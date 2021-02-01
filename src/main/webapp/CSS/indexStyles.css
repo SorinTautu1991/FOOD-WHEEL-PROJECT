@@ -1,0 +1,96 @@
+/*Styles for form signup*/
+
+.form-row{
+    justify-content: center;
+}
+#mySignUpForm, #loginForm{
+    background-color:white;
+}
+
+.submit-btn{
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+
+.message, .messageEmail{
+    color: red;
+}
+
+.messageChecked{
+    color: green;
+}
+
+.titleMid{
+    margin-left: auto;
+}
+#submit-btn, #submit-btn-login, #submit-btn-signup{
+    border-radius: 5px;
+    width: 200px;
+    height: 35px;
+    background-color: white;
+    color: crimson;
+    text-decoration: darkblue;
+}
+
+.custom-file-label{
+    border-radius: 5px;
+    background-color: white;
+
+}
+
+#exampleModalCenterTitle{
+    position: absolute;
+    text-align: center;
+}
+
+.custom-file-label::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: calc(1.5em + .75rem);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    content: "Browse";
+    background-color: white;
+    border-left: inherit;
+    border-radius: 0 .25rem .25rem 0;
+}
+
+.custom-file-label{
+    border-color: red;
+}
+
+.customFileLabelResolved{
+    border-color: green;
+}
+
+
+#avatar-drop {
+    text-align: left;
+    color: black;
+    position: absolute;
+    height: 35px;
+    margin-top: 73px;
+    border:none;
+}
+
+.form-control.is-valid, .was-validated .form-control:valid {
+    padding-right: calc(1.4em + .75rem);
+}
+
+.wrongName{
+    color: red;
+}
+
+.wrongEmail{
+    color: red;
+}
+
+.wrongPassword{
+    color:red;
+}

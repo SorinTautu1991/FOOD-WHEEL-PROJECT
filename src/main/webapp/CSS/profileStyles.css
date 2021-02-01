@@ -1,0 +1,23 @@
+::placeholder{
+    color:orange;!important;
+    opacity:1;
+}
+
+
+/*Animation for wheel spin adding blur*/
+.blur{
+    animation: blur 7s;
+}
+
+@keyframes blur {
+    0%{
+        filter: blur(1,5px);
+    }
+
+    80%{
+        filter: blur(1,5px);
+    }
+    100%{
+        filter: blur(0px);
+    }
+}
