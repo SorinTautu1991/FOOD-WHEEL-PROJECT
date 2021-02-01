@@ -1,4 +1,5 @@
 # FOOD-WHEEL-PROJECT
+https://foodwheelapp.herokuapp.com/
 This repository contains my project developed for obtaining the completion certificate as a Java software developer at Informal School of It 2021.
 This project`s development took 2 months of hard work, considering the fact that I started to learn to program, six months ago. Everything started from a simple idea of random recipe generation based on some database entries and soon developed into multiple functionalities.
 Food Wheel has the following functionalities:
