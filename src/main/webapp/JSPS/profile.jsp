@@ -8,6 +8,7 @@
 <html>
 <head>
     <title>Profile</title>
+    <link rel="shortcut icon" type="image/jpg" href="https://res.cloudinary.com/hmzve6z5z/image/upload/v1612007026/ICONS/unnamed.jpg"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link type="text/css" href="${pageContext.request.contextPath}/CSS/profileStyles.css">
 </head>

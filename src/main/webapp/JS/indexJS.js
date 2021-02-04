@@ -123,7 +123,7 @@ function createCarousel(response, carId) {
     activeItem.style.marginRight = "5px";
     activeItem.style.color = "black";
     activeItem.innerText = altImg;
-    activeItem.style.fontSize = "small";
+    activeItem.style.fontSize = "x-small";
     carouselActiveItem.appendChild(activeItem);
     carouselInner.appendChild(carouselActiveItem);
     for(let i=1;i<response.length;i++){
@@ -137,7 +137,7 @@ function createCarousel(response, carId) {
         carItem.style.marginRight = "5px";
         carItem.style.height = "120px";
         carItem.style.fontFamily = "Helvetica";
-        carItem.style.fontSize = "small";
+        carItem.style.fontSize = "x-small";
         carItem.style.color = "black";
         carItem.style.padding = "20px";
         carItem.style.backgroundColor = "#F8F8F8";

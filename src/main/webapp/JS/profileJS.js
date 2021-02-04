@@ -1197,6 +1197,9 @@ function populateScreenWithShoppingListContains(response){
 
         for(let j=0;j<nutrients.length;j++){
             var ingredientName = nutrients[j].ingredientName;
+            if(ingredientName.includes("_")){
+                ingredientName = ingredientName.replaceAll("_", " ");
+            }
             var picUrl = nutrients[j].ingredientURL;
             var tableRow = createTableRow(picUrl,ingredientName, okDiv, tableId);
             tableBody.appendChild(tableRow);

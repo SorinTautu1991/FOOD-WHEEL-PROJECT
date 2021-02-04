@@ -173,9 +173,12 @@ public class AddRecipeServlet extends HttpServlet {
                 double totalCarbohydrates = s.getNf_total_carbohydrate();
                 double calories = s.getNf_calories();
                 double sodium = s.getNf_sodium();
+                if(ingredientName.contains(" ")){
+                    ingredientName = ingredientName.replace(" ","_");
+                }
                 try {
                     ApiResponse result = cloudinary.search()
-                            .expression("public_id=INGREDIENTS/" + ingredientName)
+                            .expression("public_id=INGREDIENTS/" + ingredientName + "* AND folder=INGREDIENTS AND filename:" + ingredientName + "*")
                             .maxResults(1)
                             .execute();
                     if(result!=null){
