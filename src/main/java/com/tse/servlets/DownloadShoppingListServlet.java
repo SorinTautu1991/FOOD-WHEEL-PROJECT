@@ -44,7 +44,6 @@ public class DownloadShoppingListServlet extends HttpServlet {
         String nameOfRecipe = nr.getNameOfRecipe();
         ListOfIngredientsDeserialisationSimple li = gson.fromJson(jsonTwo, ListOfIngredientsDeserialisationSimple.class);
         List<String> listOfIngredients = li.getListIngr();
-
         // This list will be populated with objects that contain the name of ingredient from shopping list and url for picture
         List<IngredientNameAndPicUrlSerialisation> list = new ArrayList<>();
         // This brings the full list of ingredients with pic url for a certain recipe
@@ -54,7 +53,15 @@ public class DownloadShoppingListServlet extends HttpServlet {
                 JSONArray jsonArray = new JSONArray(ss);
                 for(int i=0;i<jsonArray.length();i++){
                     NutrientsUrlIngredients nt = gson.fromJson(jsonArray.get(i).toString(), NutrientsUrlIngredients.class);
-                    if(ingredientName.equals(nt.getIngredientName())){
+                    String ingrNameThatNeedModification = nt.getIngredientName();
+                    if(ingrNameThatNeedModification.contains("_")){
+                        ingrNameThatNeedModification = ingrNameThatNeedModification.replace("_", " ");
+                    }
+//                    if(ingredientName.equals(nt.getIngredientName())){
+//                        IngredientNameAndPicUrlSerialisation in = new IngredientNameAndPicUrlSerialisation(ingredientName, nt.getIngredientURL());
+//                        list.add(in);
+//                    }
+                    if(ingredientName.equals(ingrNameThatNeedModification)){
                         IngredientNameAndPicUrlSerialisation in = new IngredientNameAndPicUrlSerialisation(ingredientName, nt.getIngredientURL());
                         list.add(in);
                     }

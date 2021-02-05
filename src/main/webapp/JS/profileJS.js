@@ -1084,6 +1084,9 @@ function confirmTheLastElementsOfTable(event){
     }
     for(let k=0;k<arrOne.length;k++){
         if(arrOne[k] !== ""){
+            if(arrOne[k].includes(" ")){
+                arrOne[k].replace(" ", "_")
+            }// i modified here
             arr.push(arrOne[k]);
         }
     }
@@ -2558,6 +2561,9 @@ var arrayOfIngredients = [];
 // This function autocompletes the search for ingredients
 function autoCompleteIngredients(){
     var searchInput = document.getElementById('search-by-ingredients-input').value;
+    if(searchInput.includes(" ")){
+        searchInput = searchInput.replace(" ", "_");
+    }// i modified here
     if(searchInput.length > 3){
         fetch("autoCompleteIngredients",{
             method:"POST",
