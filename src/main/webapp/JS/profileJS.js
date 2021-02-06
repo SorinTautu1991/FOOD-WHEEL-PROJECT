@@ -895,11 +895,49 @@ function shoppingListContent(){
         return res.json();
     }).then(function (response) {
         if(response === "false"){
-            console.log("The list is empty!");
+            var alert = createAlertEmptyShoppingList();
+            alert.style.textAlign = "center";
+            alert.innerText = "Your shopping list is empty!";
+            var idAlert = randomUUIDForIdOfRows();
+            alert.setAttribute("id", idAlert);
+            var display = document.getElementById("search-response");
+            showAlertShoppingListContent(alert, display);
+            setTimeout(() => {
+                hideAlertShoppingList(idAlert);
+            }, 2000);
+
         }else{
             populateScreenWithShoppingListContains(response);
         }
     });
+}
+
+// Show alert
+function showAlertShoppingListContent(alert, displayDiv) {
+    displayDiv.appendChild(alert);
+}
+
+// Hide Alert
+function hideAlertShoppingList(idAlert) {
+    var alert = document.getElementById(idAlert);
+    $(alert).alert('close');
+    $(alert).alert('dispose');
+}
+
+// Alert creation
+function createAlertEmptyShoppingList() {
+    var alert = document.createElement('div');
+    alert.classList.add('alert');
+    alert.classList.add('alert-danger');
+    alert.style.width = "450px";
+    alert.style.zIndex = "2200";
+    alert.style.position = "absolute";
+    alert.style.left = "32%";
+    alert.style.marginTop = "130px";
+    alert.setAttribute('role', 'alert');
+    return alert;
+
+
 }
 
 // Dynamic creation of table for displaying the shopping list contains

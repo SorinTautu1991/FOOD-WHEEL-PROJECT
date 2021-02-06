@@ -44,15 +44,25 @@ public class ShoppingListContentServlet extends HttpServlet {
         List<String> nameOfRecipeList = instance.getNameOfRecipesFromShoppingList(id);
         resp.setContentType("application/json");
         if(nameOfRecipeList.size() == 0){
-            resp.getWriter().write("false");
+            resp.setContentType("application/json");
+            resp.getWriter().write(gson.toJson("false"));
+        }else{
+            List<NameOfRecipeAndListOfNutrientsAndURLSerialisation> list = new ArrayList<>();
+            for(String s: nameOfRecipeList){
+                URL picURLForRecipe = instance.recipePicURL(s);
+                List<String> nutrientsForSelectedRecipeName = instance.getIngredientsForARecipeName(s);
+                NameOfRecipeAndListOfNutrientsAndURLSerialisation ns = new NameOfRecipeAndListOfNutrientsAndURLSerialisation(s, picURLForRecipe, nutrientsForSelectedRecipeName);
+                list.add(ns);
+            }
+            if(list.size() == 0){
+                resp.setContentType("application/json");
+                resp.getWriter().write(gson.toJson("false"));
+            }else{
+                resp.setContentType("application/json");
+                resp.getWriter().write(gson.toJson(list));
+            }
         }
-        List<NameOfRecipeAndListOfNutrientsAndURLSerialisation> list = new ArrayList<>();
-        for(String s: nameOfRecipeList){
-            URL picURLForRecipe = instance.recipePicURL(s);
-            List<String> nutrientsForSelectedRecipeName = instance.getIngredientsForARecipeName(s);
-            NameOfRecipeAndListOfNutrientsAndURLSerialisation ns = new NameOfRecipeAndListOfNutrientsAndURLSerialisation(s, picURLForRecipe, nutrientsForSelectedRecipeName);
-            list.add(ns);
-        }
-        resp.getWriter().write(gson.toJson(list));
+
+
     }
 }
