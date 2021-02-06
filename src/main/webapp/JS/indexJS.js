@@ -13,7 +13,6 @@ function init() {
     if(getCookieIndex("tutorial") !== "true"){
         showTutorial();
     }
-
 }
 
 function showTutorial(){

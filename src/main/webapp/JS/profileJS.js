@@ -937,7 +937,7 @@ function createTable(){
     return table;
 }
 
-// This function creates the table body for simplyfing the process(divide et impera)
+// This function creates the table body for simplifying the process(divide et impera)
 function createTableBody(){
     var tableBody = createCustomElements('tbody');
     return tableBody;
@@ -955,8 +955,7 @@ function randomUUIDForIdOfRows(){
 function createTableRow(ingrImgUrl, nameOfIngredient, divForRemoval, idOfTable){
     var idOfTablee = idOfTable;
     var tableRow = createCustomElements('tr');
-    var idOfRow = nameOfIngredient + idOfTable; //Here i should generate uuid random
-    // var idOfRow = nameOfIngredient + randomUUIDForIdOfRows();
+    var idOfRow = randomUUIDForIdOfRows();
     tableRow.setAttribute('id', idOfRow);
     var tableRowIngImg = createCustomElements('td');
     var img = createCustomElements('img');
