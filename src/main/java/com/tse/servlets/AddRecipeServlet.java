@@ -145,8 +145,8 @@ public class AddRecipeServlet extends HttpServlet {
             try {
 
                 JSONArray response = Unirest.post("https://trackapi.nutritionix.com/v2/natural/nutrients")
-                        .header("x-app-id", "14a7da12")
-                        .header("x-app-key", "7f4578b81868ad3d9080d715099677be")
+                        .header("x-app-id", System.getenv("APP_ID"))
+                        .header("x-app-key", System.getenv("APP_KEY"))
                         .header("Content-Type", "application/json")
                         .body("{\"query\":\"" + ingredients + "\"}")
                         .asJson()
