@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.User;
 import com.tse.model.DBManagement;
 import com.tse.model.LastNameDeserialisation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +13,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
-
 
 @WebServlet(urlPatterns = {"/checklast"})
 public class CheckForDuplicatesLastNameServlet extends HttpServlet {
@@ -27,7 +25,6 @@ public class CheckForDuplicatesLastNameServlet extends HttpServlet {
         if(bf != null){
             json = bf.readLine();
         }
-
         LastNameDeserialisation lastNameDeserialisation = gson.fromJson(json, LastNameDeserialisation.class);
         try {
             User user = DBManagement.getInstance().userExistsLastName(lastNameDeserialisation.getLastName());
@@ -39,7 +36,5 @@ public class CheckForDuplicatesLastNameServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
     }
 }

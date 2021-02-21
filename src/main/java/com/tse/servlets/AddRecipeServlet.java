@@ -14,7 +14,6 @@ import com.tse.model.NutrientsDeserialisation;
 import com.tse.model.NutrientsUrlIngredients;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -64,15 +63,12 @@ public class AddRecipeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         // Instantiating the cloudinary object
         try {
             cloudinary = new Cloudinary(String.valueOf(new URI(System.getenv("CLOUDINARY_URL"))));
         } catch (URISyntaxException e) {
             System.err.println(e);
         }
-
-
 
         //Getting parts from fields
         String nameOfRecipe = manageInputFromParts.manageInput(req.getPart("nameRecipe"));
@@ -90,7 +86,6 @@ public class AddRecipeServlet extends HttpServlet {
             System.out.println("Country of origin: " + countryOfOrigin);
             Part foodPic = req.getPart("foodPic");
 
-
             //Save the avatar to servlet context path in the folder i created earlier
             String fileName = foodPic.getSubmittedFileName();
             foodPic.write(path + File.separator + fileName);
@@ -100,7 +95,6 @@ public class AddRecipeServlet extends HttpServlet {
 
             // Creating a file so i can upload it to cloud
             File file = new File(path + File.separator + fileName);
-
 
             // Uploading foodPic to cloud
             Map upload = cloudinary.uploader().upload(file, ObjectUtils.asMap(
@@ -112,12 +106,9 @@ public class AddRecipeServlet extends HttpServlet {
 
             // Revealing the URL of the new uploaded picture
             URL imgUrl = new URL((String) upload.get("secure_url"));
-            System.out.println(imgUrl);
 
             // Retrieving url for flag of country of origin
             URL flag = instance.getFlagUrl(countryOfOrigin);
-            System.out.println(flag);
-
 
             // NutritionixAPI endpoint
             // Unirest object mapper gson
@@ -131,7 +122,6 @@ public class AddRecipeServlet extends HttpServlet {
                         throw new RuntimeException(e);
                     }
                 }
-
                 public String writeValue(Object o) {
                     try{
                         return gson.toJson(o);
@@ -143,7 +133,6 @@ public class AddRecipeServlet extends HttpServlet {
 
             List<NutrientsDeserialisation> list = new ArrayList<>();
             try {
-
                 JSONArray response = Unirest.post("https://trackapi.nutritionix.com/v2/natural/nutrients")
                         .header("x-app-id", System.getenv("APP_ID"))
                         .header("x-app-key", System.getenv("APP_KEY"))
@@ -195,7 +184,6 @@ public class AddRecipeServlet extends HttpServlet {
                     e.printStackTrace();
                 }
             }
-
             if(listOfIngredients != null){
                 Recipe recipe = new Recipe(nameOfRecipe, timeToCook, servings, ingredients, instructions, typeOfFood, imgUrl, countryOfOrigin, flag, gson.toJson(listOfIngredients));
                 if(recipe != null){
@@ -209,8 +197,6 @@ public class AddRecipeServlet extends HttpServlet {
                 }
             }
         }
-
-
     }
 }
 

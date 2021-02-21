@@ -7,7 +7,6 @@ public class ShoppingList {
     private UUID userId;
     private String nameOfRecipe;
 
-
     public ShoppingList(UUID userId, String nameOfRecipe) {
         this.id = UUID.randomUUID();
         this.userId = userId;

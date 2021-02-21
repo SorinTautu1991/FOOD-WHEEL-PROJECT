@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.User;
 import com.tse.model.DBManagement;
 import com.tse.model.PasswordChangeDeserialisation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +13,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.UUID;
-
 
 @WebServlet(urlPatterns = {"/changePsw"})
 public class ChangePswServlet extends HttpServlet {
@@ -40,7 +38,6 @@ public class ChangePswServlet extends HttpServlet {
         String confirmedPassword = ps.getConfirmedPsw();
         UUID id = instance.getIdUserByUserName(user);
         User activeUser = instance.getUser(id);
-
         if(!password.equals(confirmedPassword)){
             resp.setContentType("application/json");
             resp.getWriter().write(gson.toJson("false"));

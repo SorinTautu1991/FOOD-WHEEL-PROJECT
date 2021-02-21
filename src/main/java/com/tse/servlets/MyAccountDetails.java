@@ -6,7 +6,6 @@ import com.tse.entity.User;
 import com.tse.model.DBManagement;
 import com.tse.model.ResponseForMyAccountDetailsSerialisation;
 import com.tse.model.UsernameDeserialisation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.UUID;
-
 
 @WebServlet(urlPatterns = {"/myaccount"})
 public class MyAccountDetails extends HttpServlet {
@@ -51,6 +49,5 @@ public class MyAccountDetails extends HttpServlet {
             resp.setContentType("application/json");
             resp.getWriter().write(gson.toJson(rs));
         }
-
     }
 }

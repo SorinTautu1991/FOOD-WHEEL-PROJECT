@@ -6,7 +6,6 @@ public class IngredientNameAndPicUrlSerialisation {
     private String ingredientName;
     private URL picURL;
 
-
     public IngredientNameAndPicUrlSerialisation(String ingredientName, URL picURL) {
         this.ingredientName = ingredientName;
         this.picURL = picURL;

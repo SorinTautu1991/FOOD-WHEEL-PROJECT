@@ -5,7 +5,6 @@ import com.tse.entity.FavouritesRecipes;
 import com.tse.entity.Recipe;
 import com.tse.model.AddToFavNameDeserialisation;
 import com.tse.model.DBManagement;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,10 +55,5 @@ public class AddToFavouritesRecipeServlet extends HttpServlet {
             resp.setContentType("application/json");
             resp.getWriter().write("false");
         }
-
-
-
-
-
     }
 }

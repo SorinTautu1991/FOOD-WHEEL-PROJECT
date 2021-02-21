@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import com.tse.entity.User;
 import com.tse.model.DBManagement;
 import com.tse.model.ManageInputFromParts;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -75,27 +74,25 @@ public class UpdateAccountServlet extends HttpServlet {
                 case "3":
                     gender = "non-disclosure";
                     break;
+                default:
             }
             String userName = manageInputFromParts.manageInput(req.getPart("usernameUpdate"));
             Part avatarPart = req.getPart("avatarUpdate");
-
 
             //Save the avatar to servlet context
             String fileName = avatarPart.getSubmittedFileName();
             avatarPart.write(path + File.separator + fileName);
             //Saving avatar name as string
             String avatar = fileName;
-
             File file = new File(path + File.separator + fileName);
 
-        //Instantiating the Cloudinary Object
-        Cloudinary cloudinary = null;
-        try {
-            cloudinary = new Cloudinary(String.valueOf(new URI(System.getenv("CLOUDINARY_URL"))));
-        } catch (URISyntaxException e) {
-            System.err.println(e);
-        }
-
+            //Instantiating the Cloudinary Object
+            Cloudinary cloudinary = null;
+            try {
+                cloudinary = new Cloudinary(String.valueOf(new URI(System.getenv("CLOUDINARY_URL"))));
+            } catch (URISyntaxException e) {
+                System.err.println(e);
+            }
 
             //uploading avatar to cloud
             Map upload = cloudinary.uploader().upload(file, ObjectUtils.asMap(
@@ -105,7 +102,6 @@ public class UpdateAccountServlet extends HttpServlet {
                     "use_filename", "true"
             ));
             URL imgUrl = new URL((String) upload.get("secure_url"));
-
             UUID idOfPresentUser = instance.getIdUserByUserName(activeUser);
             User updatedUser = new User(idOfPresentUser, firstName, lastName, address, country, emailOne, passwordOne, date, gender, userName, avatar, imgUrl);
             if(instance.updateUser(idOfPresentUser, updatedUser)){
@@ -115,7 +111,6 @@ public class UpdateAccountServlet extends HttpServlet {
                 resp.setContentType("application/json");
                 resp.getWriter().write(gson.toJson("false"));
             }
-
         }
     }
 }

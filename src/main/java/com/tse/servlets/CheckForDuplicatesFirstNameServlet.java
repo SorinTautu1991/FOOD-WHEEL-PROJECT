@@ -1,11 +1,9 @@
 package com.tse.servlets;
 
-
 import com.google.gson.Gson;
 import com.tse.entity.User;
 import com.tse.model.DBManagement;
 import com.tse.model.FirstNameDeserialisation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +36,5 @@ public class CheckForDuplicatesFirstNameServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 }

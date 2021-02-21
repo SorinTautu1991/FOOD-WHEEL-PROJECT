@@ -13,7 +13,6 @@ public class ComplexSearchFieldsDeserialisation {
         this.numberOfCalories = numberOfCalories;
     }
 
-
     public String getTypeOfFood() {
         return typeOfFood;
     }

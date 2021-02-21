@@ -17,9 +17,9 @@ Food Wheel has the following functionalities:
 12. Funny advices for users regarding nutrition and food;
 The project was build using several technologies like:
 - Backend -> Java;
-- Frontend -> Javascript, Jquerry, Css, Html, Bootstrap;
-- After the development faze, I deployed the app to Heroku(A cloud service);
-- Storage -> Heroku Postgresql(Heroku addon);
+- Frontend -> Javascript, jQuerry, CSS, HTML, Bootstrap;
+- After the development phase, I deployed the app to Heroku(A cloud service);
+- Storage -> Heroku PostgreSQL(Heroku addon);
 - Image storage and transformations -> Cloudinary(Heroku addon);   
 
 

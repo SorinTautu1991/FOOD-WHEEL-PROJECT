@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.Recipe;
 import com.tse.model.AutocompleteSearchInputDeserialisation;
 import com.tse.model.DBManagement;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,12 +15,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @WebServlet(urlPatterns = {"/autocompleteHome"})
 public class AutoCompleteSearchHome extends HttpServlet {
     private Gson gson;
     private DBManagement instance;
-
 
     @Override
     public void init() throws ServletException {
@@ -41,6 +38,5 @@ public class AutoCompleteSearchHome extends HttpServlet {
         List<Recipe> responseList = new ArrayList<>(responseDb);
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(responseList));
-
     }
 }

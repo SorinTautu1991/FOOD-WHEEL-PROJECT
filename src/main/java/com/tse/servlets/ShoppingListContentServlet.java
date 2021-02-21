@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.tse.model.ActiveUserDeserialisation;
 import com.tse.model.DBManagement;
 import com.tse.model.NameOfRecipeAndListOfNutrientsAndURLSerialisation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,7 +36,6 @@ public class ShoppingListContentServlet extends HttpServlet {
         if(bf != null){
             json = bf.readLine();
         }
-
         ActiveUserDeserialisation au = gson.fromJson(json, ActiveUserDeserialisation.class);
         String activeUser = au.getActiveUser();
         UUID id = instance.getIdUserByUserName(activeUser);
@@ -62,7 +60,5 @@ public class ShoppingListContentServlet extends HttpServlet {
                 resp.getWriter().write(gson.toJson(list));
             }
         }
-
-
     }
 }

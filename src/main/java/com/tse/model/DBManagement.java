@@ -1,7 +1,6 @@
 package com.tse.model;
 
 import com.tse.entity.*;
-
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,12 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
 public class DBManagement implements DBManager {
-
     private Connection connection;
     private static DBManagement instance;
-
 
     // Connecting to DB
     private DBManagement() {
@@ -38,7 +34,7 @@ public class DBManagement implements DBManager {
         }
     }
 
-        // Singleton for getting the instance to DB
+    // Singleton for getting the instance to DB
     public static DBManagement getInstance(){
         if(instance == null){
             instance = new DBManagement();
@@ -46,7 +42,7 @@ public class DBManagement implements DBManager {
         return instance;
     }
 
-    // Check if the user that wants to register it already exists
+    // Check if user already exists
     @Override
     public boolean checkDuplicateUser(String email) {
         try {
@@ -71,7 +67,6 @@ public class DBManagement implements DBManager {
                     return true;
                 }
             }
-
         } catch (SQLException | MalformedURLException e) {
             e.printStackTrace();
         }
@@ -79,6 +74,7 @@ public class DBManagement implements DBManager {
     }
 
     // Implementing methods for dealing with users
+
     @Override
     public User getUser(UUID userId) {
         try {
@@ -115,6 +111,7 @@ public class DBManagement implements DBManager {
     }
 
     // This method changes the password for a user
+
     @Override
     public boolean changePassword(UUID id, String password) {
         try {
@@ -123,7 +120,6 @@ public class DBManagement implements DBManager {
             ps.setString(2, id.toString());
             ps.executeUpdate();
             return true;
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -157,7 +153,8 @@ public class DBManagement implements DBManager {
         return null;
     }
 
-    // This method checks if a user with this pasword already exists in db
+    // This method checks if a user with this password already exists in db
+
     public User userExistsPassword(String password) throws SQLException{
         try {
             PreparedStatement getUser = connection.prepareStatement("SELECT * FROM users WHERE password = ?");
@@ -184,7 +181,6 @@ public class DBManagement implements DBManager {
         return null;
     }
 
-
     public User userExistsFirstName(String firstName) throws SQLException {
         try {
             PreparedStatement getUser = connection.prepareStatement("SELECT * FROM users WHERE first_name = ?");
@@ -207,7 +203,7 @@ public class DBManagement implements DBManager {
             }
         }catch (SQLException e) {
             System.err.println(e);
-    }
+        }
         return null;
     }
 
@@ -248,7 +244,6 @@ public class DBManagement implements DBManager {
                 UUID id = UUID.fromString(rs.getString(1));
                 return id;
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -256,6 +251,7 @@ public class DBManagement implements DBManager {
     }
 
     // This method adds an user
+
     @Override
     public boolean addUser(User user) {
         UUID id = user.getId();
@@ -299,6 +295,7 @@ public class DBManagement implements DBManager {
     }
 
     // This method updates the information of a given user
+
     @Override
     public boolean updateUser(UUID id, User updatedUser) {
         try {
@@ -323,7 +320,8 @@ public class DBManagement implements DBManager {
         return false;
     }
 
-    // This method deletes an user account
+    // This method deletes a certain user
+
     @Override
     public boolean deleteUser(UUID id) {
         try {
@@ -337,8 +335,8 @@ public class DBManagement implements DBManager {
         return false;
     }
 
+    // This method returns a list of all the users from db
 
-    // This method returns a list of all users from db
     @Override
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();
@@ -360,7 +358,8 @@ public class DBManagement implements DBManager {
         return users;
     }
 
-    // This method returns an user by his username
+    // This method returns a certain user, by id
+
     @Override
     public List<UUID> getUserIdByName(String userName) {
         List<UUID> idResponse= new ArrayList<>();
@@ -372,7 +371,6 @@ public class DBManagement implements DBManager {
                 UUID id = UUID.fromString(rs.getString(1));
                 idResponse.add(id);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -380,6 +378,7 @@ public class DBManagement implements DBManager {
     }
 
     // This method authenticates an user
+
     public User authenticateUser(String email, String password){
         try{
             PreparedStatement user = connection.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
@@ -407,7 +406,6 @@ public class DBManagement implements DBManager {
                 } else {
                     return null;
                 }
-
             }
         }catch (SQLException | MalformedURLException e){
            System.err.println("Authenticate user error: -" + e);
@@ -416,6 +414,7 @@ public class DBManagement implements DBManager {
     }
 
     // Implementing developer method for adding countries and flags
+
     public boolean addCountry(Flag flag){
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO flags VALUES(?, ?, ?)");
@@ -435,6 +434,7 @@ public class DBManagement implements DBManager {
     }
 
     // Retrieving flag picture url of a recipe from a certain country from the db table flags
+
     public URL getFlagUrl(String countryName){
         PreparedStatement ps = null;
         try {
@@ -451,8 +451,10 @@ public class DBManagement implements DBManager {
         return null;
     }
 
-    // Implementing methods dealing with the recipes
-    // Adding a recipe
+    /* Implementing methods to deal with the recipes
+     * Adding a recipe
+     */
+
     @Override
     public boolean addRecipe(Recipe recipe) {
         try {
@@ -477,6 +479,7 @@ public class DBManagement implements DBManager {
     }
 
     // This method returns a recipe by id
+
     public Recipe getRecipeById(UUID id){
         String recipeId = id.toString();
         try {
@@ -507,7 +510,8 @@ public class DBManagement implements DBManager {
         return null;
     }
 
-    // This method queries input for autocomplete search
+    // This method queries the db using the user`s input
+
     @Override
     public List<Recipe> getAutocompleteSearch(String searchInput) {
         System.out.println("This is the searchInput from DBManagement");
@@ -548,7 +552,8 @@ public class DBManagement implements DBManager {
         return null;
     }
 
-    // This method returns a list after some search input
+    // This method returns a list based on user input
+
     @Override
     public List<Recipe> getSearchedRecipes(String searchInput) {
         List<Recipe> recipesResults = new ArrayList<>();
@@ -589,7 +594,8 @@ public class DBManagement implements DBManager {
         return null;
     }
 
-    // This method returns all recipes from db
+    // This method returns all existing recipes from db
+
     @Override
     public List<Recipe> getAllRecipes() {
         List<Recipe> allRecipes = new ArrayList<>();
@@ -599,7 +605,6 @@ public class DBManagement implements DBManager {
             while(resultSet.next()){
                 UUID id = UUID.fromString(resultSet.getString(1));
                 String nameOfRecipe = resultSet.getString(2);
-                System.out.println("Name of recipe from db: -" + nameOfRecipe);
                 String timeToCook = resultSet.getString(3);
                 int servings = resultSet.getInt(4);
                 String ingredients = resultSet.getString(5);
@@ -623,7 +628,8 @@ public class DBManagement implements DBManager {
         return null;
     }
 
-    // This method returns the uuid of a recipe by its name
+    // This method returns the uuid of a recipe based on the recipe`s name
+
     public UUID getIdOfRecipeByName(String name){
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT id FROM recipes WHERE name_of_recipe = ?");
@@ -639,7 +645,8 @@ public class DBManagement implements DBManager {
         return null;
     }
 
-    // This method adds a recipe to favourites table od a certain user
+    // This method adds a recipe to a certain user`s favourites table
+
     public boolean addToFavourites(FavouritesRecipes fv){
         String id = fv.getId().toString();
         String userId = fv.getUserId().toString();
@@ -657,7 +664,8 @@ public class DBManagement implements DBManager {
         return false;
     }
 
-    // Getting list of favourites recipes for a particular user by UUID
+    // This method returns all entries from a certain user`s favourites table
+
     @Override
     public List<Recipe> getFavouritesList(UUID id) {
         List<Recipe> results = new ArrayList<>();
@@ -694,6 +702,7 @@ public class DBManagement implements DBManager {
     }
 
     // Adding a shopping list details to db in table recipe_list
+
     @Override
     public boolean addShoppingList(ShoppingList sl) {
         try {
@@ -710,6 +719,7 @@ public class DBManagement implements DBManager {
     }
 
     // Getting a list of recipe names for a specific user that wants to get the shopping list
+
     @Override
     public List<String> getNameOfRecipesFromShoppingList(UUID userId) {
         List<String> nameOfRecipeList = new ArrayList<>();
@@ -728,7 +738,8 @@ public class DBManagement implements DBManager {
         return nameOfRecipeList;
     }
 
-    // This method returns a list of ingredient names by its name
+    // This method returns a list of ingredients for a certain recipe
+
     @Override
     public List<String> getIngredientsForARecipeName(String recipeName) {
         List<String> nutrients = new ArrayList<>();
@@ -766,6 +777,7 @@ public class DBManagement implements DBManager {
     }
 
     // This method returns a list of ingredients for all recipes
+
     @Override
     public List<String> getIngredientsForAllRecipes() {
         List<String> ingrList = new ArrayList<>();
@@ -830,6 +842,7 @@ public class DBManagement implements DBManager {
     }
 
     // This method checks if a certain user already has a certain recipe to his favourites
+
     @Override
     public boolean checkDuplicatedRecipeInUserFavourites(UUID userId, UUID recipeId) {
         List<String> recipesId = new ArrayList<>();
@@ -845,18 +858,17 @@ public class DBManagement implements DBManager {
             if(recipesId.isEmpty()){
                 return true;
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
-    // This method checks if there are duplicates in db regarding the name of recipe
+    // This method checks if there are duplicates in db regarding the name of a recipe
+
     @Override
     public boolean checkRecipeDuplicates(String nameOfRecipe) {
         List<String> recipeNames = new ArrayList<>();
-
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT name_of_recipe FROM recipes where name_of_recipe = ?");
             ps.setString(1, nameOfRecipe);
@@ -874,7 +886,8 @@ public class DBManagement implements DBManager {
         return false;
     }
 
-    // This method checks for duplicates in db for shopping list items with the same recipe
+    // This method checks for duplicates for shopping list items with the same recipe
+
     @Override
     public boolean checkDuplicatesInShoppingList(UUID userId, String nameOfRecipe) {
         List<String> recipeIdFromSHoppingLists = new ArrayList<>();
@@ -897,6 +910,7 @@ public class DBManagement implements DBManager {
     }
 
     // This method queries for complex search based on user input
+
     @Override
     public List<Recipe> getRecipesFromComplexSearch(String typeOfFood, int numberOfServings, String timeToCook) {
         List<Recipe> responses = new ArrayList<>();
@@ -931,7 +945,7 @@ public class DBManagement implements DBManager {
         return null;
     }
 
-    // This method returns a list of uuid`s by a name of recipe
+    // This method returns a list of uuid`s based on a recipe name
     @Override
     public List<UUID> getRecipeIdByName(String nameOfRecipe) {
         List<UUID> recipeId = new ArrayList<>();
@@ -949,7 +963,7 @@ public class DBManagement implements DBManager {
         return recipeId;
     }
 
-    // This method deletes a recipe from a user`s favourites
+    // This method deletes a recipe from a user`s favourites table
     @Override
     public boolean deleteFromFavourites(UUID userId, UUID recipeId) {
         try {
@@ -964,8 +978,8 @@ public class DBManagement implements DBManager {
         return false;
     }
 
+    // This method deletes a recipe from shopping list table for a certain user
 
-    // This method deletes a recipe from shopping list contains for a certain user
     @Override
     public boolean deleteFromShoppingList(UUID userId, String nameOfRecipe) {
         try {
@@ -980,7 +994,8 @@ public class DBManagement implements DBManager {
         return false;
     }
 
-    // This method deletes all favourites recipe when a user wants to delete account
+    // This method deletes all favourites recipe when a user wants to delete his account
+
     @Override
     public boolean deleteAllFavouritesForAUser(UUID userId) {
         try {
@@ -994,8 +1009,8 @@ public class DBManagement implements DBManager {
         return false;
     }
 
+    // This method deletes all shopping lists of a certain user, when he deletes his account
 
-    // This method deletes all shopping lists of a user when he deletes his account
     @Override
     public boolean deleteAllShoppingListsForAUser(UUID userId) {
         try {
@@ -1009,8 +1024,8 @@ public class DBManagement implements DBManager {
         return false;
     }
 
-
     // This method returns all the advices from db
+
     @Override
     public List<Advices> getAllAdvices() {
         List<Advices> advices = new ArrayList<>();

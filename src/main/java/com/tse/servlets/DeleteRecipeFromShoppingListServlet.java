@@ -3,7 +3,6 @@ package com.tse.servlets;
 import com.google.gson.Gson;
 import com.tse.model.DBManagement;
 import com.tse.model.NameOfRecipeAndActiveUserDeserialisation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.UUID;
-
 
 @WebServlet(urlPatterns = {"/deleteShoppingList"})
 public class DeleteRecipeFromShoppingListServlet extends HttpServlet {
@@ -33,7 +31,6 @@ public class DeleteRecipeFromShoppingListServlet extends HttpServlet {
         if(bf != null){
             json = bf.readLine();
         }
-
         NameOfRecipeAndActiveUserDeserialisation nt = gson.fromJson(json, NameOfRecipeAndActiveUserDeserialisation.class);
         String activeUser = nt.getActiveUser();
         String nameOfRecipe = nt.getNameOfRecipe();
@@ -45,8 +42,5 @@ public class DeleteRecipeFromShoppingListServlet extends HttpServlet {
             resp.setContentType("application/json");
             resp.getWriter().write(gson.toJson("false"));
         }
-
-
-
     }
 }

@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.Recipe;
 import com.tse.model.DBManagement;
 import com.tse.model.DBManager;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,12 +20,10 @@ public class WheelSpinServlet extends HttpServlet {
     private DBManager instance;
     private Gson gson;
 
-
     @Override
     public void init() throws ServletException {
         instance = DBManagement.getInstance();
         this.gson = new Gson();
-
     }
 
     @Override
@@ -48,7 +45,5 @@ public class WheelSpinServlet extends HttpServlet {
         recipes1.add(respRecipe);
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(recipes1));
-
-
     }
 }

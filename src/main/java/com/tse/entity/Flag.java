@@ -15,7 +15,6 @@ public class Flag {
         this.flagUrl = flagUrl;
     }
 
-
     public UUID getId() {
         return id;
     }

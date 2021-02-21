@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.Recipe;
 import com.tse.model.DBManagement;
 import com.tse.model.NameOfRecipeDeserialisation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +39,5 @@ public class MoreDetailsCardBtnHome extends HttpServlet {
         if(recipe != null){
             resp.getWriter().write(gson.toJson(recipe));
         }
-
     }
 }

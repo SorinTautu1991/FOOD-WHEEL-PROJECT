@@ -79,6 +79,7 @@ public class Recipe {
     public String getCountryOfOrigin() {
         return countryOfOrigin;
     }
+
     public URL getFlag() {
         return flag;
     }

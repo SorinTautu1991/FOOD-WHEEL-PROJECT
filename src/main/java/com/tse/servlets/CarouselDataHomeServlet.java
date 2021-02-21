@@ -1,10 +1,8 @@
 package com.tse.servlets;
 
-
 import com.google.gson.Gson;
 import com.tse.entity.Advices;
 import com.tse.model.DBManagement;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 
 @WebServlet(urlPatterns = "/carousel")
 public class CarouselDataHomeServlet extends HttpServlet {

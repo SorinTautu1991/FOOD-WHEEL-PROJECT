@@ -8,7 +8,6 @@ import com.cloudinary.utils.ObjectUtils;
 import com.tse.entity.Flag;
 import com.tse.model.DBManagement;
 import com.tse.model.ManageInputFromParts;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
-
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 10,
@@ -42,7 +40,6 @@ public class AddCountryServlet extends HttpServlet {
         this.path = getServletContext().getRealPath("") + File.separator +  "UPLOAD_DIRECTORY";
         File uploadDir = new File(path);
         if (!uploadDir.exists()) uploadDir.mkdir();
-        System.out.println("Directory created succesfull!");
     }
 
     @Override
@@ -60,7 +57,6 @@ public class AddCountryServlet extends HttpServlet {
         }
 
         // Getting parts from form data
-
         String nameOfCountry = manageInputFromParts.manageInput(req.getPart("addCountry")).toUpperCase();
         Part countryFlag = req.getPart("countryFlag");
 
@@ -68,10 +64,8 @@ public class AddCountryServlet extends HttpServlet {
         String fileName = countryFlag.getSubmittedFileName();
         countryFlag.write(path + File.separator + fileName);
 
-
         // Creating a file so i can upload it to cloud
         File file = new File(path + File.separator + fileName);
-
 
         // Uploading avatar to cloud
         Map upload = cloudinary.uploader().upload(file, ObjectUtils.asMap(
@@ -85,15 +79,12 @@ public class AddCountryServlet extends HttpServlet {
         URL flagUrl = new URL((String) upload.get("secure_url"));
         System.out.println(flagUrl);
 
-
-        // Adding country to database in table flags
-        if(flagUrl != null && nameOfCountry != null){
+        // Adding country into the database -> table flags
+        if(flagUrl != null){
             Flag flag = new Flag(flagUrl, nameOfCountry);
             if(instance.addCountry(flag)){
                 resp.sendRedirect(req.getContextPath() + "/profile");
             }
         }
-
-
     }
 }

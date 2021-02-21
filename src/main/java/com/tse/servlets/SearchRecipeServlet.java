@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.Recipe;
 import com.tse.model.DBManagement;
 import com.tse.model.SearchFieldInputDeserialisation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +20,6 @@ import java.util.List;
 public class SearchRecipeServlet extends HttpServlet {
     private DBManagement instance;
     private Gson gson;
-
 
     @Override
     public void init() throws ServletException {
@@ -48,6 +46,5 @@ public class SearchRecipeServlet extends HttpServlet {
         List<Recipe> responseList = new ArrayList<>(responseListFromDb);
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(responseList));
-
     }
 }

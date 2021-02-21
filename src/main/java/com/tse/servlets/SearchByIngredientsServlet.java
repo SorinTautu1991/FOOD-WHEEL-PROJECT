@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.Recipe;
 import com.tse.model.DBManagement;
 import com.tse.model.ListOfIngredientsDeserialisationSimple;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +13,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-
 
 @WebServlet(urlPatterns = {"/searchByIngredients"})
 public class SearchByIngredientsServlet extends HttpServlet {

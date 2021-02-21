@@ -27,7 +27,6 @@ public class NutrientsUrlIngredients {
         this.ingredientURL = ingredientURL;
     }
 
-
     public String getIngredientName() {
         return ingredientName;
     }

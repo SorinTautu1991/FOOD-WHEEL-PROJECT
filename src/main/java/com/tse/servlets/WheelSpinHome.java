@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.Recipe;
 import com.tse.model.DBManagement;
 import com.tse.model.DBManager;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,19 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 @WebServlet(urlPatterns = {"/randomHome"})
 public class WheelSpinHome extends HttpServlet {
     private DBManager instance;
     private Gson gson;
-
 
     @Override
     public void init() throws ServletException {
         instance = DBManagement.getInstance();
         this.gson = new Gson();
     }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

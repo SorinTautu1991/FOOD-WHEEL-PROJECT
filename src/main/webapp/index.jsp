@@ -529,19 +529,19 @@
 
 <%--Div for displaying carrousell of recipes--%>
 <div class="container-fluid justify-content-center" id="container-for-carousel" style="width: 100%;height:120px;background-color:#F8F8F8;box-shadow:0 0 5px black;opacity:0.9;position:absolute;bottom:65px;display: flex;">
-    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-one" class="carousel slide" data-ride="carousel">
+    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-one" class="carousel slide" data-ride="carousel" data-interval="5000">
     </div>
-    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-two" class="carousel slide" data-ride="carousel">
+    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-two" class="carousel slide" data-ride="carousel" data-interval="5000">
     </div>
-    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-three" class="carousel slide" data-ride="carousel">
+    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-three" class="carousel slide" data-ride="carousel" data-interval="5000">
     </div>
-    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-four" class="carousel slide" data-ride="carousel">
+    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-four" class="carousel slide" data-ride="carousel" data-interval="5000">
     </div>
-    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-five" class="carousel slide" data-ride="carousel">
+    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-five" class="carousel slide" data-ride="carousel" data-interval="5000">
     </div>
-    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-six" class="carousel slide" data-ride="carousel">
+    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-six" class="carousel slide" data-ride="carousel" data-interval="5000">
     </div>
-    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-seven" class="carousel slide" data-ride="carousel">
+    <div style="box-shadow: 0 0 5px black;margin-right: 5px;background-color: #F8F8F8;" id="carousel-seven" class="carousel slide" data-ride="carousel" data-interval="5000">
     </div>
 </div>
 

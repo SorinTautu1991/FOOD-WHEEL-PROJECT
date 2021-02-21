@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import com.tse.entity.User;
 import com.tse.model.DBManagement;
 import com.tse.model.ManageInputFromParts;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -22,10 +21,9 @@ import java.net.URL;
 import java.util.Map;
 import java.util.UUID;
 
-
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
-maxFileSize = 1024 * 1024 * 10,
-maxRequestSize = 1024 * 1024 * 100)
+        maxFileSize = 1024 * 1024 * 10,
+        maxRequestSize = 1024 * 1024 * 100)
 
 @WebServlet(urlPatterns = {"/signup"})
 public class SignUpServlet extends HttpServlet {
@@ -51,7 +49,6 @@ public class SignUpServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 
         //Get parts from form fields
         String firstName = manageInputFromParts.manageInput(req.getPart("firstName"));
@@ -83,6 +80,7 @@ public class SignUpServlet extends HttpServlet {
                     break;
                 case "3": gender = "non-disclosure";
                     break;
+                default:
             }
             String userName = manageInputFromParts.manageInput(req.getPart("username"));
             Part avatarPart = req.getPart("avatar");
@@ -95,13 +93,12 @@ public class SignUpServlet extends HttpServlet {
             File file = new File(path + File.separator + fileName);
 
             //Instantiating the Cloudinary Object
-        Cloudinary cloudinary = null;
-        try {
-            cloudinary = new Cloudinary(String.valueOf(new URI(System.getenv("CLOUDINARY_URL"))));
-        } catch (URISyntaxException e) {
-            System.err.println(e);
-        }
-
+            Cloudinary cloudinary = null;
+            try {
+                cloudinary = new Cloudinary(String.valueOf(new URI(System.getenv("CLOUDINARY_URL"))));
+            } catch (URISyntaxException e) {
+                System.err.println(e);
+            }
 
             //uploading avatar to cloud
             Map upload = cloudinary.uploader().upload(file, ObjectUtils.asMap(
@@ -128,7 +125,6 @@ public class SignUpServlet extends HttpServlet {
                 resp.getWriter().write(gson.toJson("false"));
             }
         }
-
     }
 }
 

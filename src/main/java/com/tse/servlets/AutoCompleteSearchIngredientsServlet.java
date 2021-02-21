@@ -6,7 +6,6 @@ import com.tse.model.IngredientNameAndPicUrlSerialisation;
 import com.tse.model.NutrientsUrlIngredients;
 import com.tse.model.SearchFieldInputDeserialisation;
 import org.cloudinary.json.JSONArray;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +17,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @WebServlet(urlPatterns = {"/autoCompleteIngredients"})
 public class AutoCompleteSearchIngredientsServlet extends HttpServlet {
@@ -56,6 +54,5 @@ public class AutoCompleteSearchIngredientsServlet extends HttpServlet {
         }
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(finalList));
-
     }
 }

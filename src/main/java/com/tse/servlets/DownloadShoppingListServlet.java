@@ -9,7 +9,6 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.cloudinary.json.JSONArray;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +18,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @WebServlet(urlPatterns = {"/downloadShoppingList"})
 public class DownloadShoppingListServlet extends HttpServlet {
@@ -57,10 +55,6 @@ public class DownloadShoppingListServlet extends HttpServlet {
                     if(ingrNameThatNeedModification.contains("_")){
                         ingrNameThatNeedModification = ingrNameThatNeedModification.replace("_", " ");
                     }
-//                    if(ingredientName.equals(nt.getIngredientName())){
-//                        IngredientNameAndPicUrlSerialisation in = new IngredientNameAndPicUrlSerialisation(ingredientName, nt.getIngredientURL());
-//                        list.add(in);
-//                    }
                     if(ingredientName.equals(ingrNameThatNeedModification)){
                         IngredientNameAndPicUrlSerialisation in = new IngredientNameAndPicUrlSerialisation(ingredientName, nt.getIngredientURL());
                         list.add(in);
@@ -68,9 +62,7 @@ public class DownloadShoppingListServlet extends HttpServlet {
                 }
             }
         }
-
         // Dealing with the pdf
-
         PDDocument doc = new PDDocument();
         PDDocumentInformation pd = new PDDocumentInformation();
         pd.setTitle("Shopping List");
@@ -81,7 +73,6 @@ public class DownloadShoppingListServlet extends HttpServlet {
         contents.beginText();
         PDFont font = PDType1Font.HELVETICA_BOLD;
         contents.setFont(font, 30);
-
         contents.newLineAtOffset(100, 650);
         contents.setLeading(14.5f);
         contents.showText("SHOPPING LIST");

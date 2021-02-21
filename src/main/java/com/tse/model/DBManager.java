@@ -4,13 +4,14 @@ import com.tse.entity.Advices;
 import com.tse.entity.Recipe;
 import com.tse.entity.ShoppingList;
 import com.tse.entity.User;
-
 import java.net.URL;
 import java.util.List;
 import java.util.UUID;
 
 public interface DBManager {
+
     //Dealing with users
+
     User getUser(UUID userId);
     boolean addUser(User user);
     boolean updateUser(UUID id, User updatedUser);
@@ -21,6 +22,7 @@ public interface DBManager {
     List<UUID> getUserIdByName(String userName);
 
     //Dealing with recipes
+
     boolean addRecipe(Recipe recipe);
     List<Recipe> getSearchedRecipes(String searchInput);
     List<Recipe> getAllRecipes();
@@ -42,9 +44,6 @@ public interface DBManager {
     boolean deleteAllFavouritesForAUser(UUID userId);
     boolean deleteAllShoppingListsForAUser(UUID userId);
 
-    // dealing with advices
+    // Dealing with advices
     List<Advices> getAllAdvices();
-
-
-
 }

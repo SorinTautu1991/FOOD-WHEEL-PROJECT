@@ -17,11 +17,10 @@ public class User {
     private String avatar;
     private URL cloud_url;
 
-
     public User(String firstName, String lastName, String address, String country, String email, String password, String dateOfBirth, String gender, String userName, String avatar, URL cloud_url) {
         if(firstName == null || firstName.equals("")){
             throw new NullPointerException("First name cannot be empty!");
-        } else {
+        }else{
             this.firstName = firstName;
         }
         if(lastName == null || lastName.equals("")){
@@ -49,19 +48,16 @@ public class User {
         } else {
             this.password = password;
         }
-
         if(dateOfBirth == null || dateOfBirth.equals("")){
             throw new NullPointerException("Birth date field cannot be empty");
         } else {
             this.dateOfBirth = dateOfBirth;
         }
-
         if(gender == null || gender.equals("")){
             throw new NullPointerException("Gender field cannot be empty.");
         } else {
             this.gender = gender;
         }
-
         if(userName == null || userName.equals("")){
             throw new NullPointerException("Username field cannot be empty");
         } else {
@@ -112,9 +108,7 @@ public class User {
         this.gender = gender;
         this.userName = userName;
         this.avatar = avatar;
-
     }
-
 
     public UUID getId() {
         return id;

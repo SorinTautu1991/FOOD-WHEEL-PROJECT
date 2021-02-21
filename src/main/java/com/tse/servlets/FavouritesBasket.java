@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.Recipe;
 import com.tse.model.ActiveUserDeserialisation;
 import com.tse.model.DBManagement;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +14,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.UUID;
-
 
 @WebServlet(urlPatterns = {"/basket"})
 public class FavouritesBasket extends HttpServlet {
@@ -44,6 +42,5 @@ public class FavouritesBasket extends HttpServlet {
             resp.setContentType("application/json");
             resp.getWriter().write(gson.toJson(recipeList));
         }
-
     }
 }

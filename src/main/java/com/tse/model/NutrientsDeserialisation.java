@@ -1,7 +1,6 @@
 package com.tse.model;
 
 import org.json.JSONObject;
-
 import java.util.List;
 
 public class NutrientsDeserialisation {

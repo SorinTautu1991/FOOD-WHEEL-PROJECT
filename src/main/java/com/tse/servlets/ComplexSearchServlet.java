@@ -7,7 +7,6 @@ import com.tse.model.DBManagement;
 import com.tse.model.NameOfRecipeAndCaloriesSerialisation;
 import com.tse.model.NutrientsUrlIngredients;
 import org.cloudinary.json.JSONArray;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @WebServlet(urlPatterns = {"/complexSearch"})
 public class ComplexSearchServlet extends HttpServlet {
@@ -38,7 +36,6 @@ public class ComplexSearchServlet extends HttpServlet {
         if(bf != null){
             json = bf.readLine();
         }
-
         ComplexSearchFieldsDeserialisation cs = gson.fromJson(json, ComplexSearchFieldsDeserialisation.class);
         String typeOfFood = cs.getTypeOfFood().toUpperCase();
         int numberOfServings = cs.getNumberOfServings();
@@ -46,13 +43,11 @@ public class ComplexSearchServlet extends HttpServlet {
         double numberOfCalories = Double.parseDouble(cs.getNumberOfCalories());
         List<Recipe> recipes = instance.getRecipesFromComplexSearch(typeOfFood, numberOfServings, timeToCook);
         resp.setContentType("application/json");
-
         if(recipes.isEmpty()){
             resp.getWriter().write(gson.toJson("false"));
         } else {
             // Filter on the recipes based on the calories number
             List<NameOfRecipeAndCaloriesSerialisation> listOfRecipeAndCalories = new ArrayList<>();
-
             for(Recipe recipe: recipes){
                 System.out.println(recipe.getNutrients());
                 JSONArray js = new JSONArray(recipe.getNutrients());
@@ -64,7 +59,6 @@ public class ComplexSearchServlet extends HttpServlet {
                 NameOfRecipeAndCaloriesSerialisation ntt = new NameOfRecipeAndCaloriesSerialisation(recipe.getNameOfRecipe(), sum);
                 listOfRecipeAndCalories.add(ntt);
             }
-
             List<Recipe> responseList = new ArrayList<>();
             // checking
             for(NameOfRecipeAndCaloriesSerialisation c : listOfRecipeAndCalories){
@@ -79,13 +73,6 @@ public class ComplexSearchServlet extends HttpServlet {
                 }
             }
             resp.getWriter().write(gson.toJson(responseList));
-
         }
-
-
-
-
-
-
     }
 }

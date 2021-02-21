@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.tse.entity.User;
 import com.tse.model.DBManagement;
 import com.tse.model.EmailDeserialisation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +13,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
-
 
 @WebServlet(urlPatterns = {"/emailcheck"})
 public class CheckForDuplicateEmailServlet extends HttpServlet {
@@ -26,7 +24,6 @@ public class CheckForDuplicateEmailServlet extends HttpServlet {
         if(bf != null){
             json = bf.readLine();
         }
-
         EmailDeserialisation emailDeserialisation = gson.fromJson(json, EmailDeserialisation.class);
         try {
             User user = DBManagement.getInstance().userExistsEmail(emailDeserialisation.getEmailOne());
@@ -38,6 +35,5 @@ public class CheckForDuplicateEmailServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 }
